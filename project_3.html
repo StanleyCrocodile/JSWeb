@@ -108,10 +108,11 @@ simpleSwitch({
 	val: 0,
 	func: switch_TWlWRmVXNwEDG
 });
-mqtt_client.publish('smartfan/ir', String(('?'+'RF'+'='+'TH')));
-mqtt_client.publish('smartfan/ir', String(('?'+'LF'+'='+'TH')));
-mqtt_client.publish('smartfan/ir', String(('?'+'RB'+'='+'TH')));
-mqtt_client.publish('smartfan/ir', String(('?'+'LB'+'='+'TH')));
+mqtt_client.publish('smartfan/ir', String(('?'+'ALL'+'='+'TH')));
+//mqtt_client.publish('smartfan/ir', String(('?'+'RF'+'='+'TH')));
+//mqtt_client.publish('smartfan/ir', String(('?'+'LF'+'='+'TH')));
+//mqtt_client.publish('smartfan/ir', String(('?'+'RB'+'='+'TH')));
+//mqtt_client.publish('smartfan/ir', String(('?'+'LB'+'='+'TH')));
 _E5_9F_B7_E8_A1_8C_E7_8B_80_E6_85_8B = true;
 cocossd_video("none","1","1","1");
 cocossd_startvideo_media(320,240,"front",0);
