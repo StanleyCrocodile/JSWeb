@@ -95,10 +95,11 @@ async function gamebutton_3_onclick (event) {
 };
 document.getElementById("gamebutton_3").addEventListener("click", gamebutton_3_onclick, true);
 await delay(3);
-mqtt_client.publish('smartfan/ir', String(('?'+'RF'+'='+'TH')));
-mqtt_client.publish('smartfan/ir', String(('?'+'LF'+'='+'TH')));
-mqtt_client.publish('smartfan/ir', String(('?'+'RB'+'='+'TH')));
-mqtt_client.publish('smartfan/ir', String(('?'+'LB'+'='+'TH')));
+mqtt_client.publish('smartfan/ir', String(('?'+'ALL'+'='+'TH')));
+//mqtt_client.publish('smartfan/ir', String(('?'+'RF'+'='+'TH')));
+//mqtt_client.publish('smartfan/ir', String(('?'+'LF'+'='+'TH')));
+//mqtt_client.publish('smartfan/ir', String(('?'+'RB'+'='+'TH')));
+//mqtt_client.publish('smartfan/ir', String(('?'+'LB'+'='+'TH')));
 
 function switch_XTgasjDNVNy() {
 
