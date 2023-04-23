@@ -1,5 +1,12 @@
+
 <!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/coco-ssd_20201012/coco-ssd_video.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/coco-ssd_20201012/coco-ssd.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simpleswitch.js'></script><link href='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/simpleswitch.css' type='text/css' rel='stylesheet'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
 var x, y, tag, code, deviceID, _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8, _E5_9F_B7_E8_A1_8C_E7_8B_80_E6_85_8B, i;
+
+  function mqttBinarytobase64(input_array) {
+    const content = new Uint8Array(input_array);
+	    return btoa(String.fromCharCode.apply(null, content));
+  }
+
 
 // 描述此函式...
 function _E5_88_86_E5_B8_83_E7_8B_80_E6_85_8B(x, y) {
@@ -24,12 +31,12 @@ function _E9_96_8B_E9_97_9C_E9_9B_BB_E6_89_87() {
 
 // 描述此函式...
 function _E9_A2_A8_E6_89_87(tag, code) {
-  if (_E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[(code - 1)] == 0) {
-    mqtt_client.publish('smartfan/ir', String(('?'+tag+'='+'m0'+';'+'s1')));
-  } else if (_E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[(code - 1)] == 1) {
+  if (_E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[(code - 1)] == 1) {
     mqtt_client.publish('smartfan/ir', String(('?'+tag+'='+'m1'+';'+'s1')));
-  } else {
+  } else if (_E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[(code - 1)] > 1) {
     mqtt_client.publish('smartfan/ir', String(('?'+tag+'='+'m1'+';'+'s0')));
+  } else {
+    mqtt_client.publish('smartfan/ir', String(('?'+tag+'='+'m0'+';'+'s1')));
   }
 }
 
@@ -139,7 +146,7 @@ cocossd_state(0);
     _E9_96_8B_E9_97_9C_E9_9B_BB_E6_89_87();
     setTimeout(async function(){
       _E5_9F_B7_E8_A1_8C_E7_8B_80_E6_85_8B = true;
-    },5000);
+    },10000);
   }
 
 cocossd_state(1);};
