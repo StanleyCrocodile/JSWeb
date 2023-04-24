@@ -9,7 +9,16 @@ var x, y, tag, code, _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8, _E5_9F_B7_E8_A1_8C_E7
 
 // 描述此函式...
 function _E5_88_86_E5_B8_83_E7_8B_80_E6_85_8B(x, y) {
-  if (x >= 0 && y >= 0) {
+  var positiveX = x >= 0;
+  var positiveY = y >= 0;
+  if (positiveX) {
+    if (positiveY) _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[0] = _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[0] + 1;
+    else _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[2] = _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[2] + 1;
+  } else {
+    if (positiveY) _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[1] = _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[1] + 1;
+    else _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[3] = _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[3] + 1;
+  }
+  /*if (x >= 0 && y >= 0) {
     _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[0] = _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[0] + 1;
   } else if (x <= 0 && y >= 0) {
     _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[1] = _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[1] + 1;
@@ -17,7 +26,7 @@ function _E5_88_86_E5_B8_83_E7_8B_80_E6_85_8B(x, y) {
     _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[2] = _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[2] + 1;
   } else if (x <= 0 && y <= 0) {
     _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[3] = _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[3] + 1;
-  }
+  }*/
 }
 
 // 描述此函式...
