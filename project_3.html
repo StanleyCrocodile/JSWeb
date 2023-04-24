@@ -38,7 +38,7 @@ function _E9_A2_A8_E6_89_87(tag, code) {
     span_set(tag,"innerHTML",('?'+tag+'='+'m1'+';'+'s0'));
   } else {
     mqtt_client.publish('smartfan/ir', String(('?'+tag+'='+'m0'+';'+'s1')));
-    span_set(tag,"innerHTML",('?'+tag+'='+'m0'+';'+'s1'));
+    span_set(tag,"innerHTML",'');
   }
 }
 
