@@ -32,13 +32,13 @@ function _E9_96_8B_E9_97_9C_E9_9B_BB_E6_89_87() {
 function _E9_A2_A8_E6_89_87(tag, code) {
   if (_E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[(code - 1)] == 1) {
     mqtt_client.publish('smartfan/ir', String(('?'+tag+'='+'m1'+';'+'s1')));
-    span_set(tag,"innerHTML",('?'+tag+'='+'m1'+';'+'s1'));
+    span_set(tag,"innerHTML",'吹風、擺頭');
   } else if (_E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[(code - 1)] > 1) {
     mqtt_client.publish('smartfan/ir', String(('?'+tag+'='+'m1'+';'+'s0')));
-    span_set(tag,"innerHTML",('?'+tag+'='+'m1'+';'+'s0'));
+    span_set(tag,"innerHTML",'吹風');
   } else {
     mqtt_client.publish('smartfan/ir', String(('?'+tag+'='+'m0'+';'+'s1')));
-    span_set(tag,"innerHTML",'');
+    span_set(tag,"innerHTML",'停止');
   }
 }
 
