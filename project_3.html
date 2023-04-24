@@ -1,10 +1,8 @@
-
-<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/coco-ssd_20201012/coco-ssd_video.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/coco-ssd_20201012/coco-ssd.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simpleswitch.js'></script><link href='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/simpleswitch.css' type='text/css' rel='stylesheet'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
-var x, y, tag, code, deviceID, _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8, _E5_9F_B7_E8_A1_8C_E7_8B_80_E6_85_8B, i;
+var x, y, tag, code, deviceID, _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8, _E5_9F_B7_E8_A1_8C_E7_8B_80_E6_85_8B, command;
 
   function mqttBinarytobase64(input_array) {
     const content = new Uint8Array(input_array);
-	    return btoa(String.fromCharCode.apply(null, content));
+    return btoa(String.fromCharCode.apply(null, content));
   }
 
 
@@ -33,13 +31,13 @@ function _E9_96_8B_E9_97_9C_E9_9B_BB_E6_89_87() {
 function _E9_A2_A8_E6_89_87(tag, code) {
   if (_E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[(code - 1)] == 1) {
     mqtt_client.publish('smartfan/ir', String(('?'+tag+'='+'m1'+';'+'s1')));
-    console.log(('?'+tag+'='+'m1'+';'+'s1'));
+    span_set(tag,"innerHTML",('?'+tag+'='+'m1'+';'+'s1'));
   } else if (_E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8[(code - 1)] > 1) {
     mqtt_client.publish('smartfan/ir', String(('?'+tag+'='+'m1'+';'+'s0')));
-    console.log(('?'+tag+'='+'m1'+';'+'s0'));
+    span_set(tag,"innerHTML",('?'+tag+'='+'m1'+';'+'s0'));
   } else {
     mqtt_client.publish('smartfan/ir', String(('?'+tag+'='+'m0'+';'+'s1')));
-    console.log(('?'+tag+'='+'m0'+';'+'s1'));
+    span_set(tag,"innerHTML",('?'+tag+'='+'m0'+';'+'s1'));
   }
 }
 
@@ -47,23 +45,23 @@ function _E9_A2_A8_E6_89_87(tag, code) {
 head_add_viewport(1,1,2,"yes");
 const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
 const options = {
-	username: '',
-	password: '',
-	keepalive: 60,
-	clientId: clientId,
-	protocolId: "MQTT",
-	protocolVersion: 4,
-	clean: true,
-	reconnectPeriod: 1000,
-	connectTimeout: 30 * 1000
+username: '',
+password: '',
+keepalive: 60,
+clientId: clientId,
+protocolId: "MQTT",
+protocolVersion: 4,
+clean: true,
+reconnectPeriod: 1000,
+connectTimeout: 30 * 1000
 }
 
 var mqtt_client = mqtt.connect('wss://broker.emqx.io:8084/mqtt',options);
 mqtt_client.on("connect", ()=>{
-	console.log("connected");
+console.log("connected");
   mqtt_client.subscribe('smartfan/temperature');
   mqtt_client.subscribe('smartfan/humidity');
-	mqtt_client.on("message", async function (topic, payload) {
+mqtt_client.on("message", async function (topic, payload) {
   var deviceID = (new TextDecoder().decode(payload)).split(',')[0];
   simpleSwitch({id: deviceID,val: 1});
    })
@@ -72,57 +70,65 @@ mqtt_client.on("connect", ()=>{
 
 _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8 = [0, 0, 0, 0];
 simpleSwitch({
-	id: 'RF',
-	width: 80,
-	height: 40,
-	left: 100,
-	top: 150,
-	text: '右前(RF)',
-	size: 14,
-	color: '#33cc00',
-	val: 0,
-	func: switch_XTgasjDNVNy
+id: 'RF',
+width: 80,
+height: 40,
+left: 100,
+top: 150,
+text: '右前(RF)',
+size: 14,
+color: '#33cc00',
+val: 0,
+func: switch_XTgasjDNVNy
 });
 simpleSwitch({
-	id: 'LF',
-	width: 80,
-	height: 40,
-	left: 40,
-	top: 150,
-	text: '左前(LF)',
-	size: 14,
-	color: '#33cc00',
-	val: 0,
-	func: switch_cTJJEOfripDikacVR
+id: 'LF',
+width: 80,
+height: 40,
+left: 40,
+top: 150,
+text: '左前(LF)',
+size: 14,
+color: '#33cc00',
+val: 0,
+func: switch_cTJJEOfripDikacVR
 });
 simpleSwitch({
-	id: 'RB',
-	width: 80,
-	height: 40,
-	left: 100,
-	top: 200,
-	text: '右後(RB)',
-	size: 14,
-	color: '#33cc00',
-	val: 0,
-	func: switch_xzXVUHVL
+id: 'RB',
+width: 80,
+height: 40,
+left: 100,
+top: 200,
+text: '右後(RB)',
+size: 14,
+color: '#33cc00',
+val: 0,
+func: switch_xzXVUHVL
 });
 simpleSwitch({
-	id: 'LB',
-	width: 80,
-	height: 40,
-	left: 40,
-	top: 200,
-	text: '左後(LB)',
-	size: 14,
-	color: '#33cc00',
-	val: 0,
-	func: switch_TWlWRmVXNwEDG
+id: 'LB',
+width: 80,
+height: 40,
+left: 40,
+top: 200,
+text: '左後(LB)',
+size: 14,
+color: '#33cc00',
+val: 0,
+func: switch_TWlWRmVXNwEDG
 });
+span_create('LB',40,100,14,'',999);
+span_create('LF',40,140,14,'',999);
+span_create('RB',200,100,14,'',999);
+span_create('RF',200,140,14,'',999);
 mqtt_client.publish('smartfan/ir', String(('?'+'ALL'+'='+'TH')));
 _E5_9F_B7_E8_A1_8C_E7_8B_80_E6_85_8B = true;
 cocossd_video("none","1","1","1");
 cocossd_startvideo_media(320,240,"front",0);
+span_set('LB',"color",(HextoRgb('#ffff00')));
+span_set('LF',"color",(HextoRgb('#ffff00')));
+span_set('RB',"color",(HextoRgb('#ffff00')));
+span_set('RF',"color",(HextoRgb('#ffff00')));
 
 cocossd_recognitionFinish = async function() {
 cocossd_state(0);
@@ -136,14 +142,14 @@ cocossd_state(0);
     _E5_9F_B7_E8_A1_8C_E7_8B_80_E6_85_8B = false;
     _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8 = [0, 0, 0, 0];
     if ((cocossd_object_number("person")) > 0) {
-      var i_end = (cocossd_object_number("person")) - 1;
-      var i_inc = 1;
-      if (0 > i_end) {
-        i_inc = -i_inc;
+      var command_end = (cocossd_object_number("person")) - 1;
+      var command_inc = 1;
+      if (0 > command_end) {
+        command_inc = -command_inc;
       }
-      for (i = 0; i_inc >= 0 ? i <= i_end : i >= i_end; i += i_inc) {
-        canvas_arc(("cocossd"),3,(cocossd_object("person",i,"bottomx")),(cocossd_object("person",i,"bottomy")),3,0,6.284,false,true,'#ffff00',0,1);
-        _E5_88_86_E5_B8_83_E7_8B_80_E6_85_8B((cocossd_object("person",i,"bottomx")) - 160, (cocossd_object("person",i,"bottomy")) - 120);
+      for (command = 0; command_inc >= 0 ? command <= command_end : command >= command_end; command += command_inc) {
+        canvas_arc(("cocossd"),3,(cocossd_object("person",command,"bottomx")),(cocossd_object("person",command,"bottomy")),3,0,6.284,false,true,'#ffff00',0,1);
+        _E5_88_86_E5_B8_83_E7_8B_80_E6_85_8B((cocossd_object("person",command,"bottomx")) - 160, (cocossd_object("person",command,"bottomy")) - 120);
       }
     }
     _E9_96_8B_E9_97_9C_E9_9B_BB_E6_89_87();
@@ -168,4 +174,4 @@ function switch_xzXVUHVL() {
 
 function switch_TWlWRmVXNwEDG() {
 
-}};main();</script></body></html>
+}
