@@ -177,12 +177,9 @@ cocossd_state(0);
       _E5_9F_B7_E8_A1_8C_E7_8B_80_E6_85_8B = true;
     },10000);
     myTimer = setInterval(async function(){
-      mqtt_client.publish('smartfan/ir', String(('?'+'ALL'+'='+'m0'+';'+'s1')));
-      span_set(1,"innerHTML",'停止');
-      span_set(2,"innerHTML",'停止');
-      span_set(3,"innerHTML",'停止');
-      span_set(4,"innerHTML",'停止');
-    },100);
+      _E5_88_86_E5_B8_83_E4_BA_BA_E6_95_B8 = [0, 0, 0, 0];
+      _E9_96_8B_E9_97_9C_E9_9B_BB_E6_89_87();
+    },10000);
   }
 
 cocossd_state(1);};
